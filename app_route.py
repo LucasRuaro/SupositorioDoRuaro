@@ -20,7 +20,7 @@ def listar_pessoas():
 def form_cadastrar_pessoa():
 	return render_template("form_cadastrar_pessoa.html")
 
-@app.route("/cadastrar_pessoa", methods=['GET', 'POST'])
+@app.route("/cadastrar_pessoa", methods=['GET'])
 def cadastrar_pessoa():
 	nome = request.form.get("nome")
 	endereco = request.form.get("endereco")
@@ -29,10 +29,10 @@ def cadastrar_pessoa():
 
 	return render_template("exibir_mensagem.html", mensagem="Cadastro bem sucedido!")
 
-@app.route("/deletar_pessoa", methods=['GET', 'POST'])
+@app.route("/deletar_pessoa", methods=['POST'])
 def deletar_pessoa():
-	nome = request.form.get("nome")
-	endereco = request.form.get("endereco")
+	nome = request.form["nome"]
+	endereco = request.form["endereco"]
 	dados = Pessoa(nome, endereco)
 
 	for pessoa in pessoas:
@@ -40,5 +40,21 @@ def deletar_pessoa():
 			pessoas.remove(pessoa)
 
 	return render_template("exibir_mensagem.html", mensagem = "Pessoa removida com sucesso!")
+
+@app.route("/form_alterar_pessoa")
+def form_alterar_pessoa():
+	return render_template("form_alterar_pessoa.html")
+
+@app.route("/alterar_pessoa", methods=['POST'])
+def alterar_pessoa():
+	nome = request.form["nome"]
+	endereco = request.form["endereco"]
+	dados = Pessoa(nome, endereco)
+
+	for pessoa in pessoas:
+		if pessoa.nome == dados.nome:
+			pessoas.append(dados)
+
+	return render_template("exibir_mensagem.html", mensagem="Alteração feita com sucesso!")
 
 app.run(host="0.0.0.0", debug=True)

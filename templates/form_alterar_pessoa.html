@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Alterar Pessoa</title>
+	<title>Alterar pessoa</title>
+	
+	<style type="text/css">
+
+		body {
+			overflow-x: hidden;
+			text-align: center;
+		}
+
+	</style>
+
 </head>
 <body>
-
-	<form action="exibir_mensagem.html">
-		<p>Antigo Nome: <input type="text" name="Nome"></p>
-		<p>Novo Nome: <input type="text" name="Nome"></p>
-		<input type="submit" value="Salvar">
+	
+	<h1>Alterar:</h1><br>
+	<form action="/alterar_pessoa" method="POST">
+		Nome: <input type="text" name="nome" value="{{pessoa.nome}}"><br><br>
+		Endereço <input type="text" name="endereco" value="{{pessoa.endereco}}"><br><br>
+		<input type="submit" value="Alterar">
 	</form>
+	<br>
+	<a href="/">Cancelar</a>
 
 </body>
 </html>
