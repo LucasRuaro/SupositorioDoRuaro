@@ -1,45 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Lista de pessoas</title>
+    <head>
+        <title>Listagem de Pessoas</title>
+    </head>
+    <body>
+        {% if session['usuario'] %}
+        <a href=/form_incluir_pessoa>Incluir</a> | 
+        {% endif %} 
+        <a href=/>Início</a> <br><br>
 
-	<style type="text/css">
-		table, th, td{
-			border: 1px solid black;
-		}
-	</style>
-	
-</head>
-<body>
-
-	<h1>Lista de Pessoas</h1>
-	<table>
-		<tr>
-			<th>Nome</th>
-			<th>Endereço</th>
-			<th>Métodos</th>
-		</tr>
-		{%for pessoa in lista:%}
-			<tr>
-				<td>{{pessoa.nome}}</td>
-				<td>{{pessoa.endereco}}</td>
-				<td>
-					<form action="/deletar_pessoa" method="POST">
-						<input type="hidden" name="nome" value="{{pessoa.nome}}"/>
-						<input type="hidden" name="endereco" value="{{pessoa.endereco}}"/>
-						<input type="submit" name="remover" value="Remover">
-					</form>
-					<form action="/form_alterar_pessoa" method="POST">
-						<input type="hidden" name="nome" value="{{pessoa.nome}}"/>
-						<input type="hidden" name="endereco" value="{{pessoa.endereco}}"/>
-						<input type="submit" name="alterar" value="Alterar">
-					</form>
-				</td>
-			</tr>
-		{%endfor%}
-	</table>
-	<br>
-	<a href="/">Voltar</a>
-
-</body>
+        {% for pessoa in lista: %}
+            {{ pessoa.nome }} | {{ pessoa.endereco }} | {{ pessoa.telefone }} 
+            {% if session['usuario'] %}
+              <a href=/excluir_pessoa?nome={{ pessoa.nome }}>Excluir</a>
+              <a href=/form_alterar_pessoa?nome={{ pessoa.nome }}>Alterar</a><br>
+            {% endif %}
+        {% endfor %} 
+        
+    </body>
 </html>

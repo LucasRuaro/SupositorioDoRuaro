@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Alterar pessoa</title>
-	
-	<style type="text/css">
-
-		body {
-			overflow-x: hidden;
-			text-align: center;
-		}
-
-	</style>
-
-</head>
-<body>
-	
-	<h1>Alterar:</h1><br>
-	<form action="/alterar_pessoa" method="POST">
-		Nome: <input type="text" name="nome" value="{{pessoa.nome}}"><br><br>
-		Endereço <input type="text" name="endereco" value="{{pessoa.endereco}}"><br><br>
-		<input type="submit" value="Alterar">
-	</form>
-	<br>
-	<a href="/">Cancelar</a>
-
-</body>
+    <head>
+        <title>Formulário de edição de dados da pessoa</title>
+    </head>
+    <body>
+        <h1>Edição de dados de pessoa</h1>
+        <form action=/alterar_pessoa>
+            Nome: <input type=text name=nome value="{{pessoa.nome}}"> <br>
+            Endereço: <textarea name=endereco>{{pessoa.endereco}}</textarea> <br>
+            Telefone: <input type=text name=telefone value="{{pessoa.telefone}}">
+            <input type=submit value=Alterar>
+            <input type=hidden name=nome_original value="{{pessoa.nome}}">
+        </form>        
+    </body>
 </html>
