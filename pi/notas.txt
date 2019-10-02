@@ -1,3 +1,0 @@
-Adicionar data e horário
-Implementar interface
-Implementar sala
