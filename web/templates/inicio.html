@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Página inicial</title>
+    </head>
+    <body>
+        {% if session['usuario'] %}
+          Bem vindo, {{ session['usuario'] }}
+          | <a href=/logout>Sair</a>
+        {% else %}
+        <a href=/form_login>Fazer login</a>
+        {% endif %}
+        <h1>Sistema de cadastro de pessoas</h1>
+        <a href=/listar_pessoas>Listar</a>
+
+        <div id=conteudo></div>
+        <hr>
+        Digite aqui o novo texto:
+        <input type=text id=novo>
+        <button id= alterar >Alterar </button>
+        <hr id=linha2>
+        <img id=mickey src="/home/aluno/Downloads/SupositorioDoRuaro/web()/templates/mickey.png" height=128>
+
+    </body>
+
+<script src=https://code.jquery.com/jquery-3.4.1.min.js> </script> 
+
+<! -- início do script personalizado -->
+<script>
+  // queremos colocar algum texto no interior da div
+  $('#conteudo').text("Olá, este conteúdo foi inserido por javascript " +
+    "com uso de jquery. Clique no mickey!");
+  // quando clicar no botão, o que acontecerá?
+  $("#alterar").click(function () {
+    // pega o conteúdo que está na caixa de texto
+    var digitado = $('#novo').val();
+    // coloca esse novo texto na div
+    $('#conteudo').text(digitado);
+  });
+  // quando clicar no mickey, ele e uma linha irão desaparecer
+  $("#mickey").click(function () {
+    $(this).fadeOut(2500);
+    $("#linha2").fadeOut(2500);
+  });
+</script>
+
+</html>

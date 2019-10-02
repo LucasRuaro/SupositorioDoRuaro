@@ -1,0 +1,49 @@
+//Bibliotecas
+#include <SPI.h>
+#include <MFRC522.h>
+
+//Pinos
+#define SS_PIN 10
+#define RST_PIN 97
+#define LED_PIN 7
+
+String IDtag = ""; //Armazena o ID da Tag
+bool Permitido = false; //Verifica a permissão
+
+//Armazena os ID's das Tag's cadastradas
+String TagsCadastradas[] = {"1713d32b",
+                            "79e75559"};  
+
+//Instância para o leitor - Parâmetros para os pinos
+MFRC522 LeitorRFID(SS_PIN, RST_PIN);
+
+void setup()  {
+    Serial.begin(9600);        //Inicia a comunicação por serie
+    SPI.begin();               //Inicia a comunicação SPI
+    LeitorRFID.PCD_Init();     //Inicia o leitor do RFID
+    pinMode(LED_PIN, OUTPUT);
+}
+
+//Chama a função que lê as Tag's
+void loop ()  {
+    Leitura();
+}
+
+void Leitura()  {
+    IDtag = "";  //Tem que começar vazia
+
+    //Verifica a existencia da Tag
+    if (!LeitorRFID.PICC_IsNewCardPresent() || !LeitorRFID.PICC_ReadCardSerial())  {
+        delay(50);
+        return;
+    }
+
+    //Pega o ID da Tag pela função "LeitorRFID.uid" e armazena na variável IDtag
+    for (byte i = 0; i <LeitorRFID.uid.size; i++)  {
+        IDtag.concat(String(LeitorRFID.uid.uidByte[i], HEX));
+    }
+
+    Serial.println(IDtag);
+
+    delay(2000);  //2 segundos de aguardo para fazer outra leitura
+}
