@@ -108,7 +108,7 @@ def login():
     login = request.args.get("login")
     senha = request.args.get("senha")
     # verificar se a combinação é válida
-    if login == 'ruaro' and senha == '123':
+    if login == 'admin' and senha == '123':
         # sucesso no login: armazena informação na sessão
         session['usuario'] = login
         # encaminha para o menu principal do sistema

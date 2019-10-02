@@ -14,7 +14,7 @@ pessoas = [
 
 @app.route("/")
 def inicio():
-    return render_template('inicio.html')
+    return render_template('form_login.html')
 '''
 @app.route("/listar_pessoas")
 def listar_pessoas():
@@ -99,7 +99,7 @@ def alterar_pessoa():
     # é utilizado um redirecionador, para que a URL do navegador
     # seja efetivamente alterada
     return redirect("listar_pessoas")
-'''
+
 @app.route("/form_login")
 def form_login():
     return render_template('form_login.html')
@@ -125,5 +125,5 @@ def logout():
     session.pop("usuario")
     # redireciona para o início do sistema
     return redirect('/')
-
+'''
 app.run(debug=True)
