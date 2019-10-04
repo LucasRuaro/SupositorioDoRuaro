@@ -9,30 +9,36 @@ body {
   width: 100px;
   height: 100px;
   position: absolute;
-  margin-top: 15%;
+  margin-top: 14%;
 }
 #animate2 {
   width: 100px;
   height: 100px;
   position: absolute;
-  margin-top: 25%;
+  margin-top: 24%;
 }
 #animate3 {
   width: 100px;
   height: 100px;
   position: absolute;
-  margin-top: 35%;
+  margin-top: 34%;
 }
 </style>
 <body>
-<h1>Corrida de Cavalo Simulator 200</h1>
-<p><button onclick="myMove()">Start</button></p> 
+<h1>Corrida de Cavalo Simulator 2000</h1>
+<p><button onclick="myMove()">Start</button></p><p id="demo"></p>
 
 <img id="animate1" src= horse.gif>
 <img id="animate2" src= horse.gif>
 <img id="animate3" src= horse.gif>
 
 <script>
+var myVar = setInterval(myTimer);
+function myTimer() {
+	var d = new Date();
+	var t = d.toLocaleTimeString();
+	document.getElementById("demo").innerHTML = t;
+}
 function myMove() {
   var elem1 = document.getElementById("animate1");
   var elem2 = document.getElementById("animate2");
@@ -42,14 +48,14 @@ function myMove() {
   function frame() {
     if (pos == 1300) {
       clearInterval(id);
-      function myFunction() {alert("The Horse ??? Wins!");}
+      alert("The Horse ??? Wins!");
+  	}
       else {
       pos++;
       elem1.style.left = pos + "px";
       elem2.style.left = pos + "px";
       elem3.style.left = pos + "px";
       }
-  	}
 	}
 }
 </script>
