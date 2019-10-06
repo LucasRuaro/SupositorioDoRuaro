@@ -1,25 +1,35 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-	<meta name="charset" content="utf-8">
-	<meta name="viewport" content="width-device-width, initial-scale=1.0">
-<title>Login</title>
-    <link rel="shortcut icon" type="image/x-icon" href="static/favicon.ico">
-    <link rel="stylesheet" href="C:/Users/ml/Downloads/SupositorioDoRuaro/pi/static/css_form_login/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="C:/Users/ml/Downloads/SupositorioDoRuaro/pi/static/css_form_login/form_login.css" type="text/css">
-<body>
-    <div class="loginbox">
-    <img src="C:/Users/ml/Downloads/SupositorioDoRuaro/pi/static/css_form_login/avatar.png" class="avatar">
-        <h1>Entrada no Sistema</h1>
-        <form>
-            <p>Usuário</p><input type="text" name=""><br>
-            <p>Senha</p><input type="password" name=""><br>
-            <input type="submit" name="" value="Entrar"><br>
-            <a href="#">Esqueceu seu login?</a><br>
-            <a href="#">Esqueceu sua senha?</a><br>
-            <a href="#">Não é cadastrado no sistema?</a>
-        </form>
-    </div>
-
-</body>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login</title>
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" href="/static/css/form_login/style.css">
+<!--===============================================================================================-->
 </head>
+<body>
+<div class="login-page">
+	<div class="form">
+	<form action="/registrar_pessoa" method="post" class="register-form">
+		<input type="text" placeholder="login" name="login">
+		<input type="password" placeholder="senha" name="senha">
+		<input type="text" placeholder="ID" name="rfid">
+		<button>Registrar</button>
+		<p class="message">Já cadastrado? <a href="#">Entrar</a></p>
+	</form>
+	<form action=/login class="login-form">
+		<input type="text" placeholder="login" name="login">
+		<input type="password" placeholder="senha" name="senha">
+		<button>Entrar</button>
+		<p class="message">Não registrado? <a href="#">Registre-se</a></p>
+	</form>
+	</div>
+</div>
+<!--===============================================================================================-->
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script  src="/static/js/script.js"></script>
+</body>
 </html>

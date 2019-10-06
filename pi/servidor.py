@@ -1,20 +1,22 @@
 from flask import Flask, render_template, request, redirect, session
-import test
+#import test
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '43r78934yt6y5907'
 
-'''
-# criar uma lista de pessoas
-# esta variável (lista) é acessada em qualquer parte deste programa servidor
-pessoas = [
-    Pessoa("Mariana","Rua das Flores","3521-1212"),
-    Pessoa("Tiago", "Beco 9", "99322-1242")
-]
-'''
-
 @app.route("/")
-def inicio():
+def form_login():
     return render_template('form_login.html')
+
+@app.route("/login")
+def login():
+    login = request.args.get("login")
+    senha = request.args.get("senha")
+    if login == 'ruaro' and senha == '123':
+        session['usuario'] = login
+        return redirect("/")
+    else:
+        return render_template("/exibir_mensagem.html", mensagem="Login/senha inválido(s)")
 '''
 @app.route("/listar_pessoas")
 def listar_pessoas():
@@ -103,21 +105,6 @@ def alterar_pessoa():
 @app.route("/form_login")
 def form_login():
     return render_template('form_login.html')
-
-@app.route("/login", methods=['POST'])
-def login():
-    # receber as informações de login e senha
-    login = request.form["login"]
-    senha = request.form["senha"]
-    # verificar se a combinação é válida
-    if login == 'hvescovi' and senha == '123':
-        # sucesso no login: armazena informação na sessão
-        session['usuario'] = login
-        # encaminha para o menu principal do sistema
-        return redirect("/")
-    else:
-        # informa que o login é inválido
-        return render_template('exibir_mensagem.html', mensagem="Login/senha inválido(s)")
 
 @app.route("/logout")
 def logout():
